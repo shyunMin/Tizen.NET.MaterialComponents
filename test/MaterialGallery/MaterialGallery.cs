@@ -129,7 +129,6 @@ namespace MaterialGallery
         {
             EcoreMainloop.Quit();
         }
-
         static void Main(string[] args)
         {
             Elementary.Initialize();
@@ -137,5 +136,6 @@ namespace MaterialGallery
             MaterialGallery app = new MaterialGallery();
             app.Run(args);
         }
+
     }
 }
