@@ -15,52 +15,6 @@ namespace MaterialGallery
             box.Show();
             conformant.SetContent(box);
 
-            #region ThemeButton
-            Box hbox = new Box(window)
-            {
-                IsHorizontal = true,
-                WeightX = 1,
-                WeightY = 0.1,
-                AlignmentX = -1,
-                AlignmentY = -1,
-            };
-            hbox.Show();
-            box.PackEnd(hbox);
-
-            var defaultColor = new MButton(window)
-            {
-                Text = "default",
-                MinimumWidth = 200,
-                WeightY = 1,
-                AlignmentY = 0.5
-            };
-            var light = new MButton(window)
-            {
-                Text = "light",
-                MinimumWidth = 200,
-                WeightY = 1,
-                AlignmentY = 0.5
-            };
-            var dark = new MButton(window)
-            {
-                Text = "Dark",
-                MinimumWidth = 200,
-                WeightY = 1,
-                AlignmentY = 0.5
-            };
-            defaultColor.Show();
-            light.Show();
-            dark.Show();
-            hbox.PackEnd(defaultColor);
-            hbox.PackEnd(light);
-            hbox.PackEnd(dark);
-
-            defaultColor.Clicked += (s, e) => MColors.Current = MColors.Default;
-            light.Clicked += (s, e) => MColors.Current = MColors.Light;
-            dark.Clicked += (s, e) => MColors.Current = MColors.Dark;
-            #endregion
-
-
             Box inner = new Box(window)
             {
                 WeightX = 1,
@@ -94,8 +48,8 @@ namespace MaterialGallery
             inner.SetLayoutCallback(() =>
             {
                 var rect = inner.Geometry;
-                slider.Geometry = new Rect((rect.Width / 2) - 250, (rect.Height / 2 - 100), 500, 50);
-                disabledSlider.Geometry = new Rect((rect.Width / 2) - 250, (rect.Height / 2), 500, 50);
+                slider.Geometry = new Rect((rect.Width / 2) , (rect.Height / 2 - 100), 200, 50);
+                disabledSlider.Geometry = new Rect((rect.Width / 2) , (rect.Height / 2), 200, 50);
             });
 
         }
