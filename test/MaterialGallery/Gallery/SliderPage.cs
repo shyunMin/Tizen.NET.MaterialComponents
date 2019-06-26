@@ -48,8 +48,8 @@ namespace MaterialGallery
             inner.SetLayoutCallback(() =>
             {
                 var rect = inner.Geometry;
-                slider.Geometry = new Rect((rect.Width / 2) , (rect.Height / 2 - 100), 200, 50);
-                disabledSlider.Geometry = new Rect((rect.Width / 2) , (rect.Height / 2), 200, 50);
+                slider.Geometry = new Rect((rect.Width / 2 - 90) , (rect.Height / 2 - 80), 200, 50);
+                disabledSlider.Geometry = new Rect((rect.Width / 2 - 90) , (rect.Height / 2), 200, 50);
             });
 
         }
