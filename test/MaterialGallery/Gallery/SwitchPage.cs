@@ -18,6 +18,7 @@ namespace MaterialGallery
 
             var switch1 = new MSwitch(window)
             {
+                IsChecked = true,
                 WeightY = 1,
                 AlignmentY = 0.5
             };
@@ -26,6 +27,8 @@ namespace MaterialGallery
 
             var switch2 = new MSwitch(window)
             {
+                IsChecked = true,
+                Color = Color.FromHex("#E30425"),
                 WeightY = 1,
                 AlignmentY = 0.5
             };
@@ -36,23 +39,11 @@ namespace MaterialGallery
             {
                 IsEnabled = false,
                 IsChecked = true,
-                Text = "Disabled",
                 WeightY = 1,
                 AlignmentY = 0.5
             };
             box.PackEnd(switch3);
             switch3.Show();
-
-            var switch4 = new MSwitch(window)
-            {
-                IsEnabled = true,
-                Text = "Custom Color",
-                Color = Color.FromHex("#E30425"),
-                WeightY = 1,
-                AlignmentY = 0.5
-            };
-            box.PackEnd(switch4);
-            switch4.Show();
         }
     }
 }
