@@ -12,8 +12,7 @@ namespace MaterialGallery
 {
     class MaterialWatchGallery : CoreUIApplication
     {
-        Window window;
-        IList<BaseGalleryPage> _views = new List<BaseGalleryPage>();
+        Window _window;
         int _screenWidth;
 
         public static string ResourceDir { get; private set; }
@@ -29,18 +28,18 @@ namespace MaterialGallery
             ResourceDir = DirectoryInfo.Resource;
             ThemeLoader.Initialize(ResourceDir);
 
-            window = new Window("WatchMaterialGallery")
+            _window = new Window("WatchMaterialGallery")
             {
                 AvailableRotations = DisplayRotation.Degree_0 | DisplayRotation.Degree_180 | DisplayRotation.Degree_270 | DisplayRotation.Degree_90
             };
-            window.BackButtonPressed += (s, e) =>
+            _window.BackButtonPressed += (s, e) =>
             {
                 Exit();
             };
-            window.Show();
+            _window.Show();
 
-            _screenWidth = window.ScreenSize.Width;
-            CreateTestPage(window);
+            _screenWidth = _window.ScreenSize.Width;
+            CreateTestPage(_window);
         }
 
         IEnumerable<BaseGalleryPage> GetGalleryPage()
