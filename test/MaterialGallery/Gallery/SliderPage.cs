@@ -1,4 +1,5 @@
 ﻿using ElmSharp;
+using System;
 using Tizen.NET.MaterialComponents;
 
 namespace MaterialGallery
@@ -7,13 +8,12 @@ namespace MaterialGallery
     {
         public override string Name => "Slider Gallery";
 
-        public override void Run(Window window)
+        public override ProfileType SupportProfile => ProfileType.Mobile | ProfileType.Wearable;
+
+        public override EvasObject CreateContent(EvasObject window)
         {
-            Conformant conformant = new Conformant(window);
-            conformant.Show();
             Box box = new ColoredBox(window);
             box.Show();
-            conformant.SetContent(box);
 
             Box inner = new Box(window)
             {
@@ -48,10 +48,11 @@ namespace MaterialGallery
             inner.SetLayoutCallback(() =>
             {
                 var rect = inner.Geometry;
-                slider.Geometry = new Rect((rect.Width / 2 - 90) , (rect.Height / 2 - 80), 200, 50);
-                disabledSlider.Geometry = new Rect((rect.Width / 2 - 90) , (rect.Height / 2), 200, 50);
+                slider.Geometry = new Rect((rect.Width / 2 - 100) + rect.X , (rect.Height / 2 - 50), 200, 50);
+                disabledSlider.Geometry = new Rect((rect.Width / 2 - 100) + rect.X, (rect.Height / 2 + 20), 200, 50);
             });
 
+            return box;
         }
     }
 }

@@ -9,16 +9,14 @@ namespace MaterialGallery
 
         public override string Name => "ProgressIndicator Gallery";
 
-        public override void Run(Window window)
+        public override ProfileType SupportProfile => ProfileType.Mobile | ProfileType.Wearable;
+
+        public override EvasObject CreateContent(EvasObject parent)
         {
-            Conformant conformant = new Conformant(window);
-            conformant.Show();
-            Box box = new ColoredBox(window);
-            conformant.SetContent(box);
+            Box box = new ColoredBox(parent);
             box.Show();
 
-
-            MProgressIndicator determinatePI = new MProgressIndicator(window)
+            MProgressIndicator determinatePI = new MProgressIndicator(parent)
             {
                 Value = 0,
                 MinimumWidth = 200,
@@ -28,7 +26,7 @@ namespace MaterialGallery
             };
             determinatePI.Show();
 
-            MProgressIndicator indeterminatePI = new MProgressIndicator(window)
+            MProgressIndicator indeterminatePI = new MProgressIndicator(parent)
             {
                 Type = MProgressIndicatorType.Indeterminate,
                 MinimumWidth = 200,
@@ -38,7 +36,7 @@ namespace MaterialGallery
             };
             indeterminatePI.Show();
 
-            MProgressIndicator disabledPI = new MProgressIndicator(window)
+            MProgressIndicator disabledPI = new MProgressIndicator(parent)
             {
                 MinimumWidth = 200,
                 AlignmentY = 0.5,
@@ -68,12 +66,8 @@ namespace MaterialGallery
             }
 
             _animator.Start();
-        }
 
-        public override void TearDown()
-        {
-            base.TearDown();
-            _animator.Stop();
+            return box;
         }
     }
 }

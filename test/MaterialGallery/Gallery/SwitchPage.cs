@@ -7,16 +7,14 @@ namespace MaterialGallery
     {
         public override string Name => "Switch Gallery";
 
-        public override void Run(Window window)
+        public override ProfileType SupportProfile => ProfileType.Mobile | ProfileType.Wearable;
+
+        public override EvasObject CreateContent(EvasObject parent)
         {
-            Conformant conformant = new Conformant(window);
-            conformant.Show();
-            Box box = new ColoredBox(window);
-            conformant.SetContent(box);
+            Box box = new ColoredBox(parent);
             box.Show();
 
-
-            var switch1 = new MSwitch(window)
+            var switch1 = new MSwitch(parent)
             {
                 IsChecked = true,
                 WeightY = 1,
@@ -25,7 +23,7 @@ namespace MaterialGallery
             box.PackEnd(switch1);
             switch1.Show();
 
-            var switch2 = new MSwitch(window)
+            var switch2 = new MSwitch(parent)
             {
                 IsChecked = true,
                 Color = Color.FromHex("#E30425"),
@@ -35,7 +33,7 @@ namespace MaterialGallery
             box.PackEnd(switch2);
             switch2.Show();
 
-            var switch3 = new MSwitch(window)
+            var switch3 = new MSwitch(parent)
             {
                 IsEnabled = false,
                 IsChecked = true,
@@ -44,6 +42,8 @@ namespace MaterialGallery
             };
             box.PackEnd(switch3);
             switch3.Show();
+
+            return box;
         }
     }
 }

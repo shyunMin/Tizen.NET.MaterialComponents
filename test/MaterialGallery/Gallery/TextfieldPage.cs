@@ -7,15 +7,14 @@ namespace MaterialGallery
     {
         public override string Name => "TextFieldPage";
 
-        public override void Run(Window window)
+        public override ProfileType SupportProfile => ProfileType.Mobile | ProfileType.Wearable;
+
+        public override EvasObject CreateContent(EvasObject parent)
         {
-            Conformant conformant = new Conformant(window);
-            conformant.Show();
-            Box box = new ColoredBox(window);
-            conformant.SetContent(box);
+            Box box = new ColoredBox(parent);
             box.Show();
 
-            var textfield = new MTextField(window)
+            var textfield = new MTextField(parent)
             {
                 Label = "Label",
                 Text = "Input text",
@@ -28,6 +27,7 @@ namespace MaterialGallery
             textfield.Show();
             box.PackEnd(textfield);
 
+            return box;
         }
     }
 

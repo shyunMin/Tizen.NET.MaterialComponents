@@ -3,19 +3,18 @@ using Tizen.NET.MaterialComponents;
 
 namespace MaterialGallery
 {
-    class ButtonPage : BaseGalleryPage
+    public class ButtonPage : BaseGalleryPage
     {
         public override string Name => "Button Gallery";
 
-        public override void Run(Window window)
+        public override ProfileType SupportProfile => ProfileType.Mobile | ProfileType.Wearable;
+
+        public override EvasObject CreateContent(EvasObject parent)
         {
-            Conformant conformant = new Conformant(window);
-            conformant.Show();
-            Box box = new ColoredBox(window);
-            conformant.SetContent(box);
+            var box = new ColoredBox(parent);
             box.Show();
 
-            var button = new MButton(window)
+            var button = new MButton(parent)
             {
                 Text= "Button",
                 MinimumWidth = 200,
@@ -25,7 +24,7 @@ namespace MaterialGallery
             box.PackEnd(button);
             button.Show();
 
-            var button2 = new MButton(window)
+            var button2 = new MButton(parent)
             {
                 IsEnabled = false,
                 Text = "Disabled",
@@ -36,7 +35,7 @@ namespace MaterialGallery
             box.PackEnd(button2);
             button2.Show();
 
-            var button3 = new MButton(window)
+            var button3 = new MButton(parent)
             {
                 IsEnabled = true,
                 Text = "Custom Color",
@@ -48,6 +47,7 @@ namespace MaterialGallery
             box.PackEnd(button3);
             button3.Show();
 
+            return box;
         }
     }
 }

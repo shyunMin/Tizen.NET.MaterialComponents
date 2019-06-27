@@ -7,18 +7,16 @@ namespace MaterialGallery
     {
         EcoreTimelineAnimator _animator;
 
+        public override ProfileType SupportProfile => ProfileType.Mobile | ProfileType.Wearable;
+
         public override string Name => "Circular ProgressIndicator Gallery";
 
-        public override void Run(Window window)
+        public override EvasObject CreateContent(EvasObject parent)
         {
-            Conformant conformant = new Conformant(window);
-            conformant.Show();
-            Box box = new ColoredBox(window);
-            conformant.SetContent(box);
+            Box box = new ColoredBox(parent);
             box.Show();
 
-
-            MActivityIndicator determinateAI = new MActivityIndicator(window)
+            MActivityIndicator determinateAI = new MActivityIndicator(parent)
             {
                 Value = 50,
                 AlignmentX = -1,
@@ -28,7 +26,7 @@ namespace MaterialGallery
             };
             determinateAI.Show();
 
-            MActivityIndicator indeterminateAI = new MActivityIndicator(window)
+            MActivityIndicator indeterminateAI = new MActivityIndicator(parent)
             {
                 Type = MProgressIndicatorType.Indeterminate,
                 AlignmentX = -1,
@@ -62,6 +60,8 @@ namespace MaterialGallery
             }
 
             _animator.Start();
+
+            return box;
         }
 
         public override void TearDown()

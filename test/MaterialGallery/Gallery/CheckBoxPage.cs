@@ -7,15 +7,14 @@ namespace MaterialGallery
     {
         public override string Name => "Checkbox Gallery";
 
-        public override void Run(Window window)
+        public override ProfileType SupportProfile => ProfileType.Mobile | ProfileType.Wearable;
+
+        public override EvasObject CreateContent(EvasObject parent)
         {
-            Conformant conformant = new Conformant(window);
-            conformant.Show();
-            Box box = new ColoredBox(window);
-            conformant.SetContent(box);
+            var box = new ColoredBox(parent);
             box.Show();
 
-            Box horizontalBox = new ColoredBox(window)
+            Box horizontalBox = new Box(parent)
             {
                 IsHorizontal = true,
                 WeightY = 1,
@@ -25,8 +24,9 @@ namespace MaterialGallery
             };
             horizontalBox.Show();
 
-            var check = new MCheckBox(window)
+            var check = new MCheckBox(parent)
             {
+                IsChecked = true,
                 WeightY = 1,
                 WeightX = 1,
                 AlignmentY = 0.9,
@@ -35,7 +35,7 @@ namespace MaterialGallery
             horizontalBox.PackEnd(check);
             check.Show();
 
-            var check2 = new MCheckBox(window)
+            var check2 = new MCheckBox(parent)
             {
                 IsEnabled = true,
                 Color = Color.FromHex("#E30425"),
@@ -47,7 +47,7 @@ namespace MaterialGallery
             horizontalBox.PackEnd(check2);
             check2.Show();
 
-            Box horizontalBox2 = new ColoredBox(window)
+            Box horizontalBox2 = new Box(parent)
             {
                 IsHorizontal = true,
                 WeightY = 1,
@@ -57,7 +57,7 @@ namespace MaterialGallery
             };
             horizontalBox2.Show();
 
-            var check3 = new MCheckBox(window)
+            var check3 = new MCheckBox(parent)
             {
                 IsEnabled = false,
                 IsChecked = false,
@@ -69,7 +69,7 @@ namespace MaterialGallery
             horizontalBox2.PackEnd(check3);
             check3.Show();
 
-            var check4 = new MCheckBox(window)
+            var check4 = new MCheckBox(parent)
             {
                 IsEnabled = false,
                 IsChecked = true,
@@ -84,6 +84,8 @@ namespace MaterialGallery
 
             box.PackEnd(horizontalBox);
             box.PackEnd(horizontalBox2);
+
+            return box;
         }
     }
 }
