@@ -24,7 +24,7 @@ namespace MaterialGallery
         void Initialize()
         {
             ResourceDir = DirectoryInfo.Resource;
-            ThemeLoader.Initialize(ResourceDir);
+            MaterialComponents.Init(ResourceDir, ComponentsOptions.All);
 
             _mainWindow = new Window("MaterialGallery");
             _mainWindow.Show();
@@ -72,10 +72,6 @@ namespace MaterialGallery
 
             foreach (var page in GetGalleryPage())
             {
-                if(Elementary.GetProfile() == "tv" && page.ExceptProfile == ProfileType.TV)
-                {
-                    continue;
-                }
                 list.Append(defaultClass, page);
             }
 
@@ -97,7 +93,14 @@ namespace MaterialGallery
         void RunGalleryPage(BaseGalleryPage page)
         {
             Window window = CreatePageWindow(page);
-            page.Run(window);
+            try
+            {
+                page.Run(window);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"{page.Name} is not supported on this profile. {ex.ToString()}");
+            }
         }        
 
         IEnumerable<BaseGalleryPage> GetGalleryPage()
